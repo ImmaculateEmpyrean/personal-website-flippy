@@ -1,0 +1,22 @@
+@use '_breakpoints.scss' as *;
+*{
+    --spacing-small: 3px;
+    --spacing-normal: 6px;
+    --spacing-large: 10px;
+}
+
+@include for-tablet-portrait-up{
+    *{
+        --spacing-small: 5px;
+        --spacing-normal: 10px;
+        --spacing-large: 15px;
+    } 
+}
+
+@include for-desktop-up{
+    *{
+        --spacing-small: 6px;
+        --spacing-normal: 12px;
+        --spacing-large: 24px;
+    }
+}

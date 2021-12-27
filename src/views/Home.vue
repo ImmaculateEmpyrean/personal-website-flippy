@@ -1,5 +1,7 @@
 <template>
-    Hello World This is the home page.
+    <h1 class="hero-heading">
+        Hello World This is the home page.
+    </h1>
 </template>
 
 <script>

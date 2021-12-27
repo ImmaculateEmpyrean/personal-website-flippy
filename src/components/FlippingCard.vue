@@ -44,6 +44,13 @@ export default {
 @use '@/assets/scss/setting' as *;
 @import '@/assets/scss/columns.scss';
 
+.flipping-card{
+    width: 100%;
+    height: 100%;
+
+    overflow: hidden;
+}
+
 .card__content{
     transition: transform 3s ease-in-out;
     transform-style: preserve-3d;

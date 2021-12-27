@@ -1,7 +1,6 @@
 <template>
     <div class="home-dev-page">
         <flipping-card :frontFacing="showHomePage">
-            
             <template #card-front>
                 <h1>Card Front</h1>
                 <p>Hey I am text at the front of the card</p>
@@ -13,8 +12,10 @@
                 <p>Hey I am text at the back of the card</p>
                 <button @click="test">Click Me To Turn Front</button>
             </template>
-
         </flipping-card>
+
+        <!-- <div class="page-image" v-show="isDesktop"></div> -->
+
     </div>
 </template>
 
@@ -57,9 +58,9 @@ export default {
 @use '@/assets/scss/setting' as *;
 @import '@/assets/scss/columns.scss';
 
-.flipping-card{
-    height: 100vh;
-}
 
+.home-dev-page{
+    height: 50vh;
+}
 </style>
 

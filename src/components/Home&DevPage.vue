@@ -1,31 +1,39 @@
 <template>
-    <div class="card__content">
+    <div class="home-dev-page">
+        <flipping-card :frontFacing="showHomePage">
+            
+            <template #card-front>
+                <h1>Card Front</h1>
+                <p>Hey I am text at the front of the card</p>
+                <button @click="test">Click Me To Turn Back</button>
+            </template>
 
-        <div class="card__front">
-            <h1>Card Front</h1>
-            <p>Hey I am text at the front of the card</p>
-            <button @click="test">Click Me To Turn Back</button>
-        </div>
+            <template #card-back>
+                <h1>Card Back</h1>
+                <p>Hey I am text at the back of the card</p>
+                <button @click="test">Click Me To Turn Front</button>
+            </template>
 
-        <div class="card__back">
-            <h1>Card Back</h1>
-            <p>Hey I am text at the back of the card</p>
-            <button @click="test">Click Me To Turn Front</button>
-        </div>
-
+        </flipping-card>
     </div>
 </template>
 
 <script>
 import {isMobile,isTablet,isDesktop} from '@/js/breakpoints.js'
+import FlippingCard from '@/components/FlippingCard.vue'
 
 export default {
     name: "Home&DevPage",
+    components:{
+        FlippingCard
+    },
     data(){
         return{
             isDesktop: false,
             isTablet: false,
-            isMobile: true
+            isMobile: true,
+
+            showHomePage: true,
         }
     },
     methods:{
@@ -35,20 +43,12 @@ export default {
             this.isMobile = isMobile();
         },
         test(){
-            if(this.$el.style.transform === "rotateY(180deg)")
-            {
-                this.$el.style.transform = "";
-                console.log('turned front')
-            }
-            else{
-                this.$el.style.transform = "rotateY(180deg)"
-                console.log('turned back')
-            } 
+           this.showHomePage = !this.showHomePage;
         }
     },
     mounted(){
         this.checkDevice.bind(this)();
-        this.$el.addEventListener("resize",this.checkDevice.bind(this));    
+        document.addEventListener("resize",this.checkDevice.bind(this));
     }
 }
 </script>
@@ -57,33 +57,8 @@ export default {
 @use '@/assets/scss/setting' as *;
 @import '@/assets/scss/columns.scss';
 
-.card__content{
-    transition: transform 3s ease-in-out;
-    transform-style: preserve-3d;
-
-    position: relative;
+.flipping-card{
     height: 100vh;
-}
-
-.card__front,
-.card__back{
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-
-    backface-visibility: hidden;
-    transform-style: preserve-3d;
-}
-
-.card__front{
-    background-color: cornflowerblue;
-}
-
-.card__back{
-    transform: rotateY(180deg);
-    background: coral;
 }
 
 </style>

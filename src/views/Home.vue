@@ -1,15 +1,20 @@
 <template>
-    <h1 class="hero-heading">
-        Hello World This is the home page.
-    </h1>
+    <HomePage />
 </template>
 
 <script>
+import HomePage from '@/components/Home&DevPage.vue';
+
 export default {
-    name: "Home"
+    name: "Home",
+    components: {
+        HomePage
+    }
 }
 </script>
 
 <style lang="scss" scoped>
 @use '@/assets/scss/setting' as *;
+@import '@/assets/scss/columns.scss';
+
 </style>

@@ -1,3 +1,13 @@
-$dark: ("dark": #001021);
-$light: ("light": #F4F3EE);
-$accent: #FE4A49;
+$dark: (
+    "0": #000,
+    "1": #111010,
+    "2": #363636
+);
+
+$light: (
+    "0": #FFF,
+    "1": #F5F1ED,
+    "2": #EEE9E9
+);
+
+$theme: #E12A2A;

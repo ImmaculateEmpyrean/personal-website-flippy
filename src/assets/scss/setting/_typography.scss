@@ -1,28 +1,104 @@
 @use './breakpoints' as *;
 @use './color' as *;
 
-*{
-    --font-small: 10px;
-    --font-normal: 16px;
-    --font-large: 20px;
-    --font-larger: 32px;
+:root{
+    --font-small    : 16px;
+    --font-normal   : 22px;
+    --font-large    : 30px;
+    --font-hero     : 48px;
+
+    --line-height-hero: 54px;
+    --line-height-heading-1: 35px;
+    --line-height-heading-2: 26px;
+    --line-height-body-text: 19px;
+
+    --letter-spacing-hero: 0.16em;
+    --letter-spacing-heading-1: 0.12em;
+    --letter-sapcing-heading-2: 0.14em;
+    --letter-spacing-body-text: 0.08em;
 }
 
 @include for-tablet-portrait-up{
-    *{
-        --font-small: 12px;
-        --font-normal: 18px;
-        --font-large: 28px;
-        --font-larger: 40px;
+    :root{
+        --font-small    : 18px;
+        --font-normal   : 24px;
+        --font-large    : 32px;
+        --font-hero     : 50px;
+
+        --line-height-hero: 58px;
+        --line-height-heading-1: 37px;
+        --line-height-heading-2: 28px;
+        --line-height-body-text: 19px;
+
+        --letter-spacing-hero: 0.085em;
+        --letter-spacing-heading-1: 0.085em;
+        --letter-sapcing-heading-2: 0.085em;
+        --letter-spacing-body-text: 0.05em;
     }   
 }
 
 @include for-desktop-up{
-    *{
-        --font-small: 14px;
-        --font-normal: 20px;
-        --font-large: 28px;
-        --font-larger: 40px;
+    :root{
+        --font-small    : 18px;
+        --font-normal   : 24px;
+        --font-large    : 32px;
+        --font-hero     : 50px;
+
+        --line-height-hero: 58px;
+        --line-height-heading-1: 37px;
+        --line-height-heading-2: 28px;
+        --line-height-body-text: 19px;
+
+        --letter-spacing-hero: 0.085em;
+        --letter-spacing-heading-1: 0.085em;
+        --letter-sapcing-heading-2: 0.085em;
+        --letter-spacing-body-text: 0.05em;
     }
 }
 
+.hero-heading{
+    font-family: Karla;
+    font-style: normal;
+    font-weight: bold;
+    font-size: var(--font-hero);
+    line-height: var(--line-height-hero);
+    letter-spacing: var(--letter-spacing-hero);
+    text-transform: uppercase;
+
+    color: map-get($dark,"0");
+}
+
+.heading-1{
+    font-family: Karla;
+    font-style: normal;
+    font-weight: bold;
+    font-size: var(--font-large);
+    line-height: var(--line-height-heading-1);
+    letter-spacing: var(--letter-spacing-heading-1);
+    text-transform: uppercase;
+
+    color: map-get($dark,"1");
+}
+
+.heading-2{
+    font-family: Karla;
+    font-style: normal;
+    font-weight: normal;
+    font-size: var(--font-normal);
+    line-height: var(--line-height-heading-2);
+    letter-spacing: var(--letter-sapcing-heading-2);
+    text-transform: uppercase;
+
+    color: map-get($dark,"1");
+}
+
+.body-text{
+    font-family: Inconsolata;
+    font-style: normal;
+    font-weight: normal;
+    font-size: var(--font-small);
+    line-height: var(--line-height-body-text);
+    letter-spacing: var(--letter-sapcing-body-text);
+
+    color: map-get($dark,"2");
+}

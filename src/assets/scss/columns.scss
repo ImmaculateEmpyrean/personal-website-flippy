@@ -9,5 +9,8 @@ $widescreen: 1800px;
 
 //is this even necessary? I might be missing something
 .columns{
-    margin: 0;
+    margin: 0 !important;
+}
+.column{
+    padding: 0 !important;
 }

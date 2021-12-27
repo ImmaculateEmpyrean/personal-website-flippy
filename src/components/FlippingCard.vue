@@ -2,11 +2,15 @@
     <div class="flipping-card">
         <div class="card__content">
             <div class="card__front">
-                <slot name="card-front"></slot>
+                <div class="card__contentWrapper">
+                    <slot name="card-front"></slot>    
+                </div>
             </div>
 
             <div class="card__back">
-                <slot name="card-back"></slot>
+                <div class="card__contentWrapper">
+                    <slot name="card-back"></slot>
+                </div>
             </div>
         </div>
     </div>
@@ -19,6 +23,10 @@ export default {
         frontFacing: {
             type: Boolean,
             default: true
+        },
+        setCardHeight:{
+            type: Boolean,
+            default: false 
         }
     },
     methods: {
@@ -27,6 +35,37 @@ export default {
             if(this.frontFacing === true)
                 cardContent.style.transform = "";
             else cardContent.style.transform = "rotateY(180deg)"
+        },
+
+        resetCardHeight(){
+            //this element is the card wrapper which stays stationary
+            let flippingCard = this.$el;
+
+            //do not set the height of the card in normal circumstances
+            if(this.setCardHeight === false){
+                flippingCard.style.minHeight = "";
+                return;
+            }
+                
+
+            //get both sides of the card
+            let contentWrappers = this.$el.querySelectorAll('.card__contentWrapper');
+            contentWrappers = [...contentWrappers];
+
+            //get the height of the larger card
+            let heightOfCard = contentWrappers.reduce(function(value,element){
+                console.log(`height of the card__content block is : ${element.clientHeight}`);
+                if(element.clientHeight > value)
+                    value = element.clientHeight;
+                return value;
+            },-99)
+
+            //set the card__content to be the height of the card
+            let cardContent = this.$el.querySelector('.card__content');
+            cardContent.style.height = `${heightOfCard}px`;
+
+            //set the minimum height of the card wrapper in question
+            flippingCard.style.minHeight = `${heightOfCard}px`;
         }
     },
     watch:{
@@ -36,6 +75,10 @@ export default {
     },
     mounted(){
         this.checkFlipCard();
+        this.resetCardHeight();
+    },
+    updated(){
+        this.resetCardHeight();
     }
 }
 </script>
@@ -45,19 +88,15 @@ export default {
 @import '@/assets/scss/columns.scss';
 
 .flipping-card{
-    width: 100%;
-    height: 100%;
-
     overflow: hidden;
 }
 
 .card__content{
-    transition: transform 3s ease-in-out;
-    transform-style: preserve-3d;
+    transition: transform 3s ease-in-out,
+                height 3s ease-in-out;
 
+    transform-style: preserve-3d;
     position: relative;
-    height: 100%;
-    width: 100%;
 }
 
 .card__front,

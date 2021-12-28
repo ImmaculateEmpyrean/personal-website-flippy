@@ -2,16 +2,19 @@
     <div class="app">
         <NavBar />
         <router-view/>
+        <contact-page></contact-page>
     </div>
 </template>
 
 <script>
 import NavBar from '@/components/NavBar.vue'
+import ContactPage from '@/components/ContactPage.vue'; 
 
 export default {
     name: "App",
     components:{
-        NavBar
+        NavBar,
+        ContactPage
     }
 }
 </script>

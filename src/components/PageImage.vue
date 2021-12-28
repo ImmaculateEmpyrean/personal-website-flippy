@@ -1,7 +1,7 @@
 <template>
     <div class="page-image" v-show="!isMobile">
-        <a href="#">{{buttonOneText}}</a>
-        <a href="#">{{buttonTwoText}}</a>
+        <a href="#" v-show="isTablet">{{buttonOneText}}</a>
+        <a href="#" v-show="isTablet">{{buttonTwoText}}</a>
     </div>
 </template>
 

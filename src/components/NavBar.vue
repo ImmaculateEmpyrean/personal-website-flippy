@@ -1,5 +1,5 @@
 <template>
-    <div class="nav-bar">
+    <div class="nav-bar" id="nav-bar">
         this is the nav-bar
     </div>
 </template>
@@ -16,8 +16,10 @@ export default {
 
 .nav-bar{
     height: 75px;
+    flex-shrink: 0;
+
     @include for-desktop-up{
-        height: 100px;
+        height: 75px;
     }
 }
 

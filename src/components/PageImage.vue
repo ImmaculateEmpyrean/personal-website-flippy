@@ -51,6 +51,7 @@ export default {
     background-position: bottom right;
     background-repeat: no-repeat;
     background-size: contain;
+    background-color: white;
 
     @include for-tablet-portrait-up{
         flex-grow: 1;

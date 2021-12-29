@@ -59,8 +59,7 @@ export default {
         isTablet:{
             handler(newValue){
                 this.setCardHeight = newValue;
-            },
-            immediate: true
+            }
         }
     },
     methods:{
@@ -75,7 +74,7 @@ export default {
     },
     mounted(){
         this.checkDevice.bind(this)();
-        document.addEventListener("resize",this.checkDevice.bind(this));
+        window.addEventListener("resize",this.checkDevice.bind(this));
     }
 }
 </script>

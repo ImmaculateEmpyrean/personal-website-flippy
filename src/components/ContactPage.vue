@@ -34,7 +34,7 @@ export default {
     mounted(){
         //update the device check on resize event
         this.checkDevice();
-        document.addEventListener("resize",this.checkDevice.bind(this))
+        window.addEventListener("resize",this.checkDevice.bind(this))
 
         //get the contact-page properly positioned on the website mount
         let contactPage = this.$el;

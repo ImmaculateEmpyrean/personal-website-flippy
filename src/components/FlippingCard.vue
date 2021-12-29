@@ -80,6 +80,12 @@ export default {
     mounted(){
         this.checkFlipCard();
         this.resetCardHeight();
+
+        document.querySelector('.card__content').addEventListener("transitionend",function(e){
+            if(e.propertyName === "height"){
+                this.$emit("card__content:heightTransitionEnd")
+            }
+        }.bind(this))
     },
     updated(){
         this.resetCardHeight();

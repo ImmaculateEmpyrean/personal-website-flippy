@@ -1,32 +1,40 @@
 <template>
     <div class="home columns is-desktop">
         
-        <flipping-card 
-            class="mainArea column is-7-desktop" 
-            :frontFacing="showHomePage"
-            :setCardHeight = "setCardHeight"
-        >
-            <template #card-front>
-                <h1>Card Front</h1>
-                <p>Hey I am text at the front of the card</p>
-                <button @click="test">Click Me To Turn Back</button>
-            </template>
+        <div class="desktop-column">
+            <flipping-card 
+                class="mainArea column is-7-desktop" 
+                :frontFacing="showHomePage"
+                :setCardHeight = "setCardHeight"
+                @card__content:heightTransitionEnd = "handleDevDetailPlacement"
+                ref="flippingCard"
+            >
+                <template #card-front>
+                    <h1>Card Front</h1>
+                    <p>Hey I am text at the front of the card</p>
+                    <button @click="test">Click Me To Turn Back</button>
+                </template>
 
-            <template #card-back>
-                <h1>Card Back</h1>
-                <p>Hey I am text at the back of the card</p>
-                <button @click="test">Click Me To Turn Front</button>
-            </template>
-        </flipping-card>
+                <template #card-back>
+                    <h1>Card Back</h1>
+                    <p>Hey I am text at the back of the card</p>
+                    <button @click="test">Click Me To Turn Front</button>
+                    <button @click="loadDetail">Click Me To Load The New Page</button>
+                </template>
+            </flipping-card>
 
-        <page-image
-            class="column is-5-desktop"
-            :isMobile="isMobile" :isTablet="isTablet" :isDesktop="isDesktop" 
-            :imageLink="currentImageDisplay"
-            :buttonOneText="buttonOneText" :buttonTwoText="buttonTwoText"
-        >
-        </page-image>
-
+            <page-image
+                class="column is-5-desktop"
+                :isMobile="isMobile" :isTablet="isTablet" :isDesktop="isDesktop" 
+                :imageLink="currentImageDisplay"
+                :buttonOneText="buttonOneText" :buttonTwoText="buttonTwoText"
+            >
+            </page-image>
+        </div>
+        <dev-detail
+            v-show="showDevDetail"
+        ></dev-detail>
+        
     </div>
 </template>
 
@@ -34,12 +42,14 @@
 import {isMobile,isTablet,isDesktop} from '@/js/breakpoints.js'
 import FlippingCard from '@/components/FlippingCard.vue'
 import PageImage from '@/components/PageImage.vue';
+import DevDetail from '@/components/DevDetail.vue';
 
 export default {
     name: "Home",
     components:{
         FlippingCard,
-        PageImage
+        PageImage,
+        DevDetail
     },
     data(){
         return{
@@ -52,7 +62,10 @@ export default {
 
             currentImageDisplay: require('@/assets/img/home.png'),
             buttonOneText: "Contact Me",
-            buttonTwoText: "Dev Showcase"
+            buttonTwoText: "Dev Showcase",
+
+            showDevDetail: false,
+            showDevDetailBlock: false
         }
     },
     watch:{
@@ -70,6 +83,18 @@ export default {
         },
         test(){
            this.showHomePage = !this.showHomePage;
+        },
+
+        loadDetail(){
+            //load the detail page starting here
+            this.setCardHeight = true;
+            this.showDevDetail = true;
+        },
+        handleDevDetailPlacement(){
+            if(this.showDevDetail === false)
+                return;
+            
+            this.showDevDetailBlock = true;
         }
     },
     mounted(){
@@ -95,6 +120,13 @@ export default {
         .flipping-card{
             height: 100%;
         }
+    }
+}
+
+@include for-desktop-up{
+    .desktop-column{
+        display: flex;
+        flex-direction: column;
     }
 }
 </style>

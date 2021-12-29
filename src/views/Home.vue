@@ -4,7 +4,7 @@
         <flipping-card 
             class="mainArea column is-7-desktop" 
             :frontFacing="showHomePage"
-            :setCardHeight = "true"
+            :setCardHeight = "setCardHeight"
         >
             <template #card-front>
                 <h1>Card Front</h1>
@@ -47,11 +47,20 @@ export default {
             isTablet: false,
             isMobile: true,
 
+            setCardHeight: false,
             showHomePage: true,
 
             currentImageDisplay: require('@/assets/img/home.png'),
             buttonOneText: "Contact Me",
             buttonTwoText: "Dev Showcase"
+        }
+    },
+    watch:{
+        isTablet:{
+            handler(newValue){
+                this.setCardHeight = newValue;
+            },
+            immediate: true
         }
     },
     methods:{
@@ -76,12 +85,17 @@ export default {
 @import '@/assets/scss/columns.scss';
 
 .home{
-    flex: 1 1 100%;
+    // flex: 1 1 100%;
+    flex-grow: 1;
     display: flex;
     flex-direction: column;
 
     @include for-desktop-up{
         flex-direction: row;
+
+        .flipping-card{
+            height: 100%;
+        }
     }
 }
 </style>

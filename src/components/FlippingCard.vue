@@ -40,10 +40,12 @@ export default {
         resetCardHeight(){
             //this element is the card wrapper which stays stationary
             let flippingCard = this.$el;
+            let cardContent = this.$el.querySelector('.card__content');
 
             //do not set the height of the card in normal circumstances
             if(this.setCardHeight === false){
                 flippingCard.style.minHeight = "";
+                cardContent.style.height = "";
                 return;
             }
                 
@@ -61,7 +63,6 @@ export default {
             },-99)
 
             //set the card__content to be the height of the card
-            let cardContent = this.$el.querySelector('.card__content');
             cardContent.style.height = `${heightOfCard}px`;
 
             //set the minimum height of the card wrapper in question
@@ -71,6 +72,9 @@ export default {
     watch:{
         frontFacing(){
             this.checkFlipCard();
+        },
+        setCardHeight(){
+            this.resetCardHeight();
         }
     },
     mounted(){
@@ -97,6 +101,8 @@ export default {
 
     transform-style: preserve-3d;
     position: relative;
+
+    height: 100%;
 }
 
 .card__front,
